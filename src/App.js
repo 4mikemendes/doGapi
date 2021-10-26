@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor() {
+    super()
+    this.state= {
+      message: []
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange() {
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        message: data
+      })
+    }
+    )
+  }
+  // handleChange(event) {
+
+  // const {message, value} = event.target
+  // this.setState({ [message]: value })
+  
+  // }
+
+  render(){
+    const text = this.state.message.message
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+
+      <h1> You want a Dog? </h1>
+      <button onClick={this.handleChange} >Click here for one </button>
+      </div>
+      
+      <img src={text} alt="" />
     </div>
   );
+  }
 }
 
 export default App;

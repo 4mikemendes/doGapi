@@ -19,12 +19,6 @@ class App extends Component {
     }
     )
   }
-  // handleChange(event) {
-
-  // const {message, value} = event.target
-  // this.setState({ [message]: value })
-  
-  // }
 
   render(){
     const text = this.state.message.message
